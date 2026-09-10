@@ -6,7 +6,11 @@ public class Product {
     private Double price;
     private Integer stock;
 
-    public Product(Long id, String name, Double price, Integer stock){
+    // porque esto lo necesita Jackson (libreria) - JSON <-> Java Objects
+    public Product(){
+    }
+
+    public Product(Long id, String name, Double price, Integer stock) {
         setId(id);
         setName(name);
         setPrice(price);

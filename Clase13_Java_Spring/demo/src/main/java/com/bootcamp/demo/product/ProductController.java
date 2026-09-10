@@ -1,5 +1,6 @@
 package com.bootcamp.demo.product;
 
+import com.bootcamp.demo.product.dto.ProductResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,8 +25,9 @@ public class ProductController{
 
 
     @GetMapping("/products/{id}")
-    public Product findById(@PathVariable Long id) {
-        return productService.findById(id);
+    public ProductResponse findById(@PathVariable Long id) {
+        Product product = productService.findById(id);
+        return new ProductResponse(product.getName(),product.getPrice());
     }
 
 
