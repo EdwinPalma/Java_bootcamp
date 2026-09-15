@@ -1,10 +1,12 @@
 package com.bootcamp.demo.product.dto;
 
+import com.bootcamp.demo.product.entities.Product;
+
 public class ProductResponse {
     private String name;
     private Double price;
 
-    public ProductResponse() {
+    public ProductResponse(Product product) {
 
     }
 

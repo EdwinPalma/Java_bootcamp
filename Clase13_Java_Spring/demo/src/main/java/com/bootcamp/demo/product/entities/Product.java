@@ -1,9 +1,20 @@
-package com.bootcamp.demo.product;
+package com.bootcamp.demo.product.entities;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "products")
 public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name="product_name")
     private String name;
+
     private Double price;
+
     private Integer stock;
 
     // porque esto lo necesita Jackson (libreria) - JSON <-> Java Objects
