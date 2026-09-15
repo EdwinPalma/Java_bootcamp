@@ -1,12 +1,39 @@
-package com.bootcamp.demo.customer;
+package com.bootcamp.demo.customer.entities;
 
+import jakarta.persistence.*;
+
+import java.sql.Timestamp;
+
+@Entity
+@Table(name = "customer")
 public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String phone;
     private String email;
+    private int isActive;
+    private Timestamp createdAt;
 
     public Customer(){
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public int getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(int isActive) {
+        this.isActive = isActive;
     }
 
     public Long getId() {

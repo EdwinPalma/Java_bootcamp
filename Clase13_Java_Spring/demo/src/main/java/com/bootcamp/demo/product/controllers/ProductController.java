@@ -24,6 +24,7 @@ public class ProductController{
 
     @GetMapping
     public List<ProductResponse> findAll() {
+
         return productService.findAll();
     }
 

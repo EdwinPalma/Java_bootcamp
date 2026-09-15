@@ -1,5 +1,7 @@
 package com.bootcamp.demo.exception;
 
+import com.bootcamp.demo.customer.errors.CustomerDeletionNotAllowedException;
+import com.bootcamp.demo.customer.errors.CustomerNotFoundException;
 import com.bootcamp.demo.product.errors.ProductDeletionNotAllowedException;
 import com.bootcamp.demo.product.errors.ProductNotFoundException;
 import org.apache.catalina.connector.Response;
@@ -21,6 +23,18 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ProductDeletionNotAllowedException.class)
     public ResponseEntity<ErrorResponse> handleconflict(ProductDeletionNotAllowedException ex){
+        ErrorResponse error = new ErrorResponse(409, ex.getMessage(), LocalDateTime.now(),null);
+        return new ResponseEntity<>(error, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(CustomerNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleconflict(CustomerNotFoundException ex){
+        ErrorResponse error = new ErrorResponse(409, ex.getMessage(), LocalDateTime.now(),null);
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CustomerDeletionNotAllowedException.class)
+    public ResponseEntity<ErrorResponse> handleconflict(CustomerDeletionNotAllowedException ex){
         ErrorResponse error = new ErrorResponse(409, ex.getMessage(), LocalDateTime.now(),null);
         return new ResponseEntity<>(error, HttpStatus.CONFLICT);
     }
