@@ -5,6 +5,7 @@ import com.bootcamp.demo.customer.dto.CustomerResponse;
 import com.bootcamp.demo.customer.services.CustomerService;
 import com.bootcamp.demo.customer.entities.Customer;
 import com.bootcamp.demo.product.dto.ProductResponse;
+import com.bootcamp.demo.product.entities.Product;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +24,17 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<Customer> findAll(
+    public List<CustomerResponse> findAll(
     ) {
         return customerService.findAll();
+
     }
 
 
     @GetMapping("/{id}")
-    public Customer findById(@PathVariable Long id) {
-        return customerService.findById(id);
+    public CustomerResponse findById(@PathVariable Long id) {
+        Customer c = customerService.findById(id);
+        return new CustomerResponse(c.getName(),c.getEmail());
     }
 
 
@@ -41,8 +44,8 @@ public class CustomerController {
     ){
         Customer c = new Customer();
         c.setName(req.getName());
-        c.setEmail(req.getEmail());
         c.setPhone(req.getPhone());
+        c.setEmail(req.getEmail());
 
         customerService.create(c);
         return new ResponseEntity<>(

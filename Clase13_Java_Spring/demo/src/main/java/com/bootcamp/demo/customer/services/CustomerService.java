@@ -1,5 +1,6 @@
 package com.bootcamp.demo.customer.services;
 
+import com.bootcamp.demo.customer.dto.CustomerResponse;
 import com.bootcamp.demo.customer.entities.Customer;
 import com.bootcamp.demo.customer.errors.CustomerDeletionNotAllowedException;
 import com.bootcamp.demo.customer.errors.CustomerNotFoundException;
@@ -27,10 +28,10 @@ public class CustomerService {
         this.repository = rep;
         }
 
-        public List<Customer> findAll(){
+        public List<CustomerResponse> findAll(){
             return this.repository.findAll()
                     .stream()
-                    .map(customer -> new Customer())
+                    .map(customer -> new CustomerResponse(customer.getName(),customer.getEmail()))
                     .toList();
             //return customers;
         }
@@ -45,11 +46,13 @@ public class CustomerService {
         }
 
     public void create(Customer customer) {
-        repository.save(customer);
+
+            repository.save(customer);
     }
 
     public void deletes(Long id) {
             Customer c = findById(id);
+//            System.out.println(c.getName() + " - " + c.getIsActive());
             if(c.getIsActive() == 1)
                 throw new CustomerDeletionNotAllowedException(
                         "Cliente con id " + id + " se encuentra activo. No se puede eliminar"

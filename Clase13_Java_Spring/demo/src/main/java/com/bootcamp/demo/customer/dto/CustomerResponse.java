@@ -7,17 +7,8 @@ import jakarta.validation.constraints.PositiveOrZero;
 
 public class CustomerResponse {
 
-    @NotBlank (message = "name must not be blank")
     private String name;
-
-    @Positive (message = "price must be a positive number")
-    @NotNull (message = "price must not be null")
     private String email;
-
-    @PositiveOrZero (message = "stock must be greater equal than zero")
-    @NotNull (message = "stock can not be null")
-    private String phone;
-
 
     public CustomerResponse() {
     }
@@ -43,11 +34,4 @@ public class CustomerResponse {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 }

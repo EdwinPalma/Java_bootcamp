@@ -3,6 +3,7 @@ package com.bootcamp.demo.customer.entities;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "customer")
@@ -14,10 +15,16 @@ public class Customer {
     private String name;
     private String phone;
     private String email;
-    private int isActive;
-    private Timestamp createdAt;
+    private int isActive = 1;
+    private Timestamp createdAt = Timestamp.valueOf(LocalDateTime.now());
 
     public Customer(){
+    }
+
+    public Customer(String name, String phone, String email) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
     }
 
     public Timestamp getCreatedAt() {

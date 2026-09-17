@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(CustomerNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleconflict(CustomerNotFoundException ex){
-        ErrorResponse error = new ErrorResponse(409, ex.getMessage(), LocalDateTime.now(),null);
+        ErrorResponse error = new ErrorResponse(404, ex.getMessage(), LocalDateTime.now(),null);
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 

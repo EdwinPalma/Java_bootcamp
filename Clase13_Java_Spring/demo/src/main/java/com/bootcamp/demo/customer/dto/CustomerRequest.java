@@ -1,20 +1,16 @@
 package com.bootcamp.demo.customer.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.*;
 
 public class CustomerRequest {
 
     @NotBlank (message = "name must not be blank")
     private String name;
 
-    @Positive (message = "price must be a positive number")
-    @NotNull (message = "price must not be null")
+    @NotBlank (message = "price must not be null")
+    @Email
     private String email;
 
-    @PositiveOrZero (message = "stock must be greater equal than zero")
     @NotNull (message = "stock can not be null")
     private String phone;
 
